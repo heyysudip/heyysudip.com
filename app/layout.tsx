@@ -28,10 +28,10 @@ export default function RootLayout({
       <body
         className={cn(fontSans.variable, "font-sans min-h-screen antialiased")}
       >
-        <div className="grid_background">
-          <div className="bg_gradient"></div>
-        </div>
         <div className="relative text-foreground">
+          <div className="grid_background">
+            <div className="bg_gradient"></div>
+          </div>
           <Header />
           {children}
           <Footer />

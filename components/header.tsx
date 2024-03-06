@@ -14,20 +14,20 @@ export const Header = () => {
           <div className="group">
             <Link
               href="/blog"
-              className="p-2 text-secondary font-medium group-hover:text-foreground transition-all"
+              className="p-2 text-zinc-600 font-medium transition-all"
             >
               Blog
             </Link>
-            <div className="w-0 h-[1.5px] mt-[0.5px] rounded-md bg-foreground group-hover:w-full transition-all" />
+            <div className="w-0 h-[1.5px] mt-[0.5px] rounded-md bg-zinc-600 group-hover:w-full transition-all" />
           </div>
           <div className="group">
             <Link
               href="/project"
-              className="p-2 text-secondary font-medium group-hover:text-foreground transition-all"
+              className="p-2 text-zinc-600 font-medium transition-all"
             >
               Projects
             </Link>
-            <div className="w-0 h-[1.5px] mt-[0.5px] rounded-md bg-foreground group-hover:w-full transition-all" />
+            <div className="w-0 h-[1.5px] mt-[0.5px] rounded-md bg-zinc-600 group-hover:w-full transition-all" />
           </div>
         </ul>
       </nav>
