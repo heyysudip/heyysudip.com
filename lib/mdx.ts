@@ -9,6 +9,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { compileMDX } from "next-mdx-remote/rsc";
 
 import { Blog, ContentType, FrontMatter, MDX } from "@/types/mdx";
+import { components } from "@/components/mdx";
 
 const ROOT = path.join(process.cwd(), "content");
 
@@ -55,7 +56,7 @@ async function getMDX(
 ): Promise<{ content: MDX; frontmatter: Partial<FrontMatter> }> {
   const { content, frontmatter } = await compileMDX({
     source: fileContent,
-    components: {},
+    components,
     options: {
       parseFrontmatter: true,
       mdxOptions: {

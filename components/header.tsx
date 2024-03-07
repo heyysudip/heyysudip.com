@@ -1,8 +1,18 @@
 import Link from "next/link";
 
-export const Header = () => {
+import { cn } from "@/lib/utils";
+
+interface HeaderProps {
+  transparent?: boolean;
+}
+export const Header = ({ transparent }: HeaderProps) => {
   return (
-    <header className="sticky top-0 inset-x-0 h-20">
+    <header
+      className={cn(
+        "sticky z-20 top-0 inset-x-0 h-20 transition-all",
+        !transparent && "shadow-sm bg-background"
+      )}
+    >
       <nav className="h-full layout flex items-center justify-between bg-transparent">
         <Link
           href="/"

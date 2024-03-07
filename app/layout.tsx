@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Poppins as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 const fontSans = FontSans({
@@ -26,16 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(fontSans.variable, "font-sans min-h-screen antialiased")}
+        className={cn(
+          fontSans.variable,
+          "relative text-foreground font-sans min-h-screen antialiased"
+        )}
       >
-        <div className="relative text-foreground">
-          <div className="grid_background">
-            <div className="bg_gradient"></div>
-          </div>
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <div className="grid_background" />
+        {children}
+        <Footer />
       </body>
     </html>
   );

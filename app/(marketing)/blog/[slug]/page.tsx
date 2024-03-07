@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="min-h-[calc(100vh-10rem)] layout">
-      {post.mdxContent} 
+      {post.mdxContent}
       {next?.meta?.title}
       {previous?.meta?.title}
     </main>
