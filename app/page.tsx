@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
     <main className="min-h-[calc(100vh-10rem)] layout flex flex-col gap-10 sm:gap-12">
-      <section className="space-y-2 w-full mt-10 sm:mt-12 md:mt-14 lg:mt-16">
+      <section className="space-y-1 w-full mt-10 sm:mt-12 md:mt-14 lg:mt-16">
         <p className="text-xl md:text-2xl font-semibold text-secondary tracking-wide">
           Hi, I&apos;m
         </p>
@@ -15,15 +15,12 @@ export default function HomePage() {
           With a passion for building beautiful and functional websites, and a
           keen eye for design and obsession for perfection, I&apos;m a web
           developer who loves to create and build things that are not only
-          visually appealing but also functional and user-friendly. I&apos;m
-          always looking for ways to improve the user experience.
+          visually appealing but also functional and user-friendly.
         </p>
         <p>
           I like to work with modern web technologies and frameworks like React,
-          Next.js, Tailwind CSS, and many more. I&apos;m always up for a
-          challenge and I&apos;m always looking for new opportunities to learn
-          and grow. I write about web development, programming, and other
-          tech-related stuff on my blog.
+          Next.js, Tailwind CSS, and many more. I write about web development,
+          programming, and other tech-related stuff on my blog.
         </p>
       </article>
     </main>
