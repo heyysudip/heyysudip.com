@@ -24,10 +24,7 @@ function getReadingTime(content: string) {
   return time < 0.5 ? 1 : Math.round(time);
 }
 
-export async function getMetadata(
-  slug: string,
-  type: ContentType
-): Promise<FrontMatter> {
+export async function getMetadata(slug: string, type: ContentType): Promise<FrontMatter> {
   const fileContent = getFileContent(slug, type);
   const { frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
@@ -40,14 +37,10 @@ export async function getMetadata(
   } as FrontMatter;
 }
 
-export async function getAllMetadata(
-  type: ContentType
-): Promise<FrontMatter[]> {
+export async function getAllMetadata(type: ContentType): Promise<FrontMatter[]> {
   const files = fs.readdirSync(path.join(ROOT, type));
   const slugs = files.map((file) => file.replace(/\.mdx$/, ""));
-  const allMetadata = await Promise.all(
-    slugs.map((slug) => getMetadata(slug, type))
-  );
+  const allMetadata = await Promise.all(slugs.map((slug) => getMetadata(slug, type)));
   return allMetadata;
 }
 
@@ -76,10 +69,7 @@ async function getMDX(
   };
 }
 
-export async function getPostBySlug(
-  slug: string,
-  type: ContentType
-): Promise<Blog> {
+export async function getPostBySlug(slug: string, type: ContentType): Promise<Blog> {
   const fileContent = getFileContent(slug, type);
   const { content, frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
@@ -98,9 +88,7 @@ export async function getPostBySlug(
 export async function getAllPosts(type: ContentType): Promise<Blog[]> {
   const files = fs.readdirSync(path.join(ROOT, type));
   const slugs = files.map((file) => file.replace(/\.mdx$/, ""));
-  const allPosts = await Promise.all(
-    slugs.map((slug) => getPostBySlug(slug, type))
-  );
+  const allPosts = await Promise.all(slugs.map((slug) => getPostBySlug(slug, type)));
   const posts = allPosts.sort(
     (a, b) => new Date(a.meta.date).getTime() - new Date(b.meta.date).getTime()
   );

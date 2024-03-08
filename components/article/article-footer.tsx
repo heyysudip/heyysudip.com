@@ -18,12 +18,7 @@ const Card = ({ date, slug, title, isNext, type }: CardProps) => {
       className="w-full"
     >
       <div className="p-4 md:py-5 md:px-6 rounded-md bg-background border hover:bg-muted transition-all">
-        <p
-          className={cn(
-            "font-medium text-sm text-zinc-500",
-            isNext && "text-end"
-          )}
-        >
+        <p className={cn("font-medium text-sm text-zinc-500", isNext && "text-end")}>
           {isNext ? "Next post" : "Last post"}
         </p>
         <h4

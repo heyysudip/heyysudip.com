@@ -24,17 +24,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     keywords: meta.keywords,
-    authors: [{ name: meta.author, url: "https://sudipbiswas.me" }],
+    authors: [{ name: meta.author, url: "https://sudipbiswas.vercel.app" }],
     openGraph: {
       title: meta.title,
       description: meta.description,
       authors: [meta.author],
       publishedTime: new Date(meta.date).toISOString(),
       type: "article",
-      url: `https://sudipbiswas.me/project/${meta.slug}`,
+      url: `https://sudipbiswas.vercel.app/project/${meta.slug}`,
       images: [
         {
-          url: `https://sudipbiswas.me${meta.ogImage}`,
+          url: `https://sudipbiswas.vercel.app${meta.ogImage}`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -43,13 +43,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      site: "sudipbiswas.me",
+      site: "sudipbiswas.vercel.app",
       creator: "Sudip Biswas",
       title: meta.title,
       description: meta.description,
       images: [
         {
-          url: `https://sudipbiswas.me${meta.ogImage}`,
+          url: `https://sudipbiswas.vercel.app${meta.ogImage}`,
           alt: meta.title,
           width: 1200,
           height: 630,

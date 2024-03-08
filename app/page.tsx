@@ -17,15 +17,14 @@ export default function HomePage() {
         <article className="space-y-4 md:space-y-5 p">
           <p>I&apos;m a Web Developer based in Maharashtra, India</p>
           <p>
-            With a passion for building beautiful and functional websites, and a
-            keen eye for design and obsession for perfection, I&apos;m a web
-            developer who loves to create and build things that are not only
-            visually appealing but also functional and user-friendly.
+            With a passion for building beautiful and functional websites, and a keen eye for design
+            and obsession for perfection, I&apos;m a web developer who loves to create and build
+            things that are not only visually appealing but also functional and user-friendly.
           </p>
           <p>
-            I like to work with modern web technologies and frameworks like
-            React, Next.js, Tailwind CSS, and many more. I write about web
-            development, programming, and other tech-related stuff on my blog.
+            I like to work with modern web technologies and frameworks like React, Next.js, Tailwind
+            CSS, and many more. I write about web development, programming, and other tech-related
+            stuff on my blog.
           </p>
         </article>
       </main>

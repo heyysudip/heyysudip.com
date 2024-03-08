@@ -1,7 +1,4 @@
-export type MDX = React.ReactElement<
-  any,
-  string | React.JSXElementConstructor<any>
->;
+export type MDX = React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 
 export type ContentType = "blog" | "project";
 

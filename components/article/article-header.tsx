@@ -14,9 +14,7 @@ export const ArticleHeader = ({
 }: Article) => {
   return (
     <section className="w-full py-2 mb-3">
-      <h1 className="text-foreground tracking-wider text-4xl font-bold">
-        {title}
-      </h1>
+      <h1 className="text-foreground tracking-wider text-4xl font-bold">{title}</h1>
       <div className="flex items-center gap-3 mt-3.5">
         <span className="text-xs text-secondary tracking-wide leading-relaxed">
           {formatDate(date)}

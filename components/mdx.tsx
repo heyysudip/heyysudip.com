@@ -49,9 +49,7 @@ export const components = {
     />
   ),
   blockquote: (props: React.HTMLProps<HTMLElement>) => (
-    <blockquote className="mt-4 border-l-2 pl-3 sm:pl-4 italic">
-      {props.children}
-    </blockquote>
+    <blockquote className="mt-4 border-l-2 pl-3 sm:pl-4 italic">{props.children}</blockquote>
   ),
 
   ul: (props: React.HTMLProps<HTMLUListElement>) => (
@@ -97,9 +95,7 @@ export const components = {
     />
   ),
   pre: ({ children }: React.HTMLProps<HTMLElement>) => (
-    <pre className="mt-4 overflow-x-auto bg-muted border rounded-md p-4 w-full">
-      {children}
-    </pre>
+    <pre className="mt-4 overflow-x-auto bg-muted border rounded-md p-4 w-full">{children}</pre>
   ),
   Image,
   Link,

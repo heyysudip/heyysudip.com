@@ -25,9 +25,7 @@ export const Footer = () => {
   return (
     <footer className="h-20 layout flex items-center justify-between">
       <div>
-        <p className="font-medium text-zinc-600 max-sm:text-sm">
-          Sudip Biswas © {year}
-        </p>
+        <p className="font-medium text-zinc-600 max-sm:text-sm">Sudip Biswas © {year}</p>
       </div>
       <div className="flex items-center gap-2">
         {links.map(({ Icon, href, label }) => (

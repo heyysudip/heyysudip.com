@@ -8,10 +8,7 @@ export const Icons = {
   ChevronLeft: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(
-        "icon icon-tabler icon-tabler-chevron-left",
-        props.className
-      )}
+      className={cn("icon icon-tabler icon-tabler-chevron-left", props.className)}
       width={props.size}
       height={props.size}
       viewBox="0 0 24 24"
@@ -32,10 +29,7 @@ export const Icons = {
   ChevronRight: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(
-        "icon icon-tabler icon-tabler-chevron-right",
-        props.className
-      )}
+      className={cn("icon icon-tabler icon-tabler-chevron-right", props.className)}
       width={props.size}
       height={props.size}
       viewBox="0 0 24 24"
@@ -80,10 +74,7 @@ export const Icons = {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(
-        "icon icon-tabler icon-tabler-brand-github",
-        props.className
-      )}
+      className={cn("icon icon-tabler icon-tabler-brand-github", props.className)}
       width={props.size}
       height={props.size}
       viewBox="0 0 24 24"
@@ -105,10 +96,7 @@ export const Icons = {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(
-        "icon icon-tabler icon-tabler-brand-linkedin",
-        props.className
-      )}
+      className={cn("icon icon-tabler icon-tabler-brand-linkedin", props.className)}
       width={props.size}
       height={props.size}
       viewBox="0 0 24 24"
