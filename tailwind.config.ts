@@ -17,6 +17,7 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         secondary: "var(--secondary)",
+        muted: "var(--muted)",
       },
     },
   },

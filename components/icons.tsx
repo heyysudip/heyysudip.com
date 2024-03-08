@@ -5,6 +5,54 @@ interface IconProps extends React.HTMLAttributes<SVGElement> {
 }
 
 export const Icons = {
+  ChevronLeft: (props: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(
+        "icon icon-tabler icon-tabler-chevron-left",
+        props.className
+      )}
+      width={props.size}
+      height={props.size}
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="#2c3e50"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path
+        stroke="none"
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+      <path d="M15 6l-6 6l6 6" />
+    </svg>
+  ),
+  ChevronRight: (props: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(
+        "icon icon-tabler icon-tabler-chevron-right",
+        props.className
+      )}
+      width={props.size}
+      height={props.size}
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="#2c3e50"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path
+        stroke="none"
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+      <path d="M9 6l6 6l-6 6" />
+    </svg>
+  ),
   Twitter: (props: IconProps) => (
     <svg
       {...props}

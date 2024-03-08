@@ -8,7 +8,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-import { Blog, ContentType, FrontMatter, MDX } from "@/types/mdx";
+import { Blog, ContentType, FrontMatter, MDX } from "@/types";
 import { components } from "@/components/mdx";
 
 const ROOT = path.join(process.cwd(), "content");
@@ -102,7 +102,7 @@ export async function getAllPosts(type: ContentType): Promise<Blog[]> {
     slugs.map((slug) => getPostBySlug(slug, type))
   );
   const posts = allPosts.sort(
-    (a, b) => new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()
+    (a, b) => new Date(a.meta.date).getTime() - new Date(b.meta.date).getTime()
   );
   return posts;
 }

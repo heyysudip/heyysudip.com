@@ -21,8 +21,17 @@ export type Blog = {
   meta: FrontMatter;
 };
 
-export type BlogPostContent = {
+export type PageContent = {
   post: Blog;
   previous: Blog;
   next: Blog;
 };
+
+export type HeadingProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>;
+
+export interface Article extends FrontMatter {
+  type: ContentType;
+}

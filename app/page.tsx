@@ -14,7 +14,7 @@ export default function HomePage() {
             Sudip Biswas
           </h1>
         </section>
-        <article className="max-sm:pb-5 space-y-4 md:space-y-6 p">
+        <article className="space-y-4 md:space-y-5 p">
           <p>I&apos;m a Web Developer based in Maharashtra, India</p>
           <p>
             With a passion for building beautiful and functional websites, and a

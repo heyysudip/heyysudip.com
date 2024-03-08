@@ -12,12 +12,12 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const metadata = await getAllMetadata("blog");
+  const metadata = await getAllMetadata("project");
   return metadata.map((meta) => ({ slug: meta.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const meta = await getMetadata(params.slug, "blog");
+  const meta = await getMetadata(params.slug, "project");
   if (!meta) return {};
 
   return {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: [meta.author],
       publishedTime: new Date(meta.date).toISOString(),
       type: "article",
-      url: `https://sudipbiswas.me/blog/${meta.slug}`,
+      url: `https://sudipbiswas.me/project/${meta.slug}`,
       images: [
         {
           url: `https://sudipbiswas.me${meta.ogImage}`,
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function getPageContent(slug: string): Promise<PageContent> {
-  const posts = await getAllPosts("blog");
+  const posts = await getAllPosts("project");
   const postIndex = posts.findIndex((post) => post.meta.slug === slug);
 
   return {
@@ -70,7 +70,7 @@ async function getPageContent(slug: string): Promise<PageContent> {
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function ProjectPostPage({ params }: Props) {
   const data = await getPageContent(params.slug);
 
   if (!data) notFound();
@@ -81,13 +81,13 @@ export default async function BlogPostPage({ params }: Props) {
     <main className="min-h-[calc(100vh-10rem)] layout py-3">
       <ArticleHeader
         {...post.meta}
-        type="blog"
+        type="project"
       />
       <article>{post.mdxContent}</article>
       <ArticleFooter
         next={next?.meta}
         previous={previous?.meta}
-        type="blog"
+        type="project"
       />
     </main>
   );

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { HeadingProps } from "@/types/components";
+import { HeadingProps } from "@/types";
 
 export const components = {
   h1: (props: HeadingProps) => (
@@ -36,7 +36,7 @@ export const components = {
   ),
   a: (props: React.HTMLProps<HTMLAnchorElement>) => (
     <a
-      className="text-primary underline underline-offset-2 hover:opacity-90 transition-all"
+      className="text-primary hover:opacity-90 transition-all"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -49,7 +49,7 @@ export const components = {
     />
   ),
   blockquote: (props: React.HTMLProps<HTMLElement>) => (
-    <blockquote className="mt-6 border-l-2 pl-6 italic">
+    <blockquote className="mt-4 border-l-2 pl-3 sm:pl-4 italic">
       {props.children}
     </blockquote>
   ),
@@ -86,18 +86,18 @@ export const components = {
   ),
   table: (props: React.HTMLProps<HTMLTableElement>) => (
     <table
-      className="w-full mt-4 table-auto bg-background"
+      className="w-full mt-4 table-auto bg-muted border rounded-md"
       {...props}
     />
   ),
   code: (props: React.HTMLProps<HTMLElement>) => (
     <code
-      className="relative rounded-md px-1 py-0.5 font-mono text-sm font-semibold"
+      className="relative rounded-md bg-muted px-1 py-0.5 font-mono text-sm font-semibold"
       {...props}
     />
   ),
   pre: ({ children }: React.HTMLProps<HTMLElement>) => (
-    <pre className="mt-4 whitespace-pre-wrap bg-[#fbfbfb] border rounded-md p-4 w-full">
+    <pre className="mt-4 overflow-x-auto bg-muted border rounded-md p-4 w-full">
       {children}
     </pre>
   ),
