@@ -1,11 +1,8 @@
 import fs from "fs";
 import path from "path";
 import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
 import readingTime from "reading-time";
-import GitHubSlugger from "github-slugger";
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { compileMDX } from "next-mdx-remote/rsc";
 
 import { Blog, ContentType, FrontMatter, MDX } from "@/types";
@@ -32,7 +29,7 @@ export async function getMetadata(slug: string, type: ContentType): Promise<Fron
   return {
     ...frontmatter,
     slug,
-    ogImage: `/og/${slug}.png`,
+    ogImage: `/${type}/${slug}.jpg`,
     timeToRead,
   } as FrontMatter;
 }
@@ -54,11 +51,7 @@ async function getMDX(
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: "append" }],
-          [rehypePrettyCode as any, { theme: "github-light" }],
-        ],
+        rehypePlugins: [[rehypePrettyCode as any, { theme: "github-light" }]],
       },
     },
   });
@@ -79,7 +72,7 @@ export async function getPostBySlug(slug: string, type: ContentType): Promise<Bl
     meta: {
       ...frontmatter,
       slug,
-      ogImage: `/og/${slug}.png`,
+      ogImage: `/${type}/${slug}.jpg`,
       timeToRead,
     } as FrontMatter,
   };

@@ -1,13 +1,16 @@
-import { formatDate } from "@/lib/utils";
+import Image from "next/image";
+
 import { Article } from "@/types";
+import { formatDate } from "@/lib/utils";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export const ArticleHeader = ({
   title,
   description,
-  ogImage,
   author,
   date,
   keywords,
+  ogImage,
   timeToRead,
   slug,
   type,
@@ -25,10 +28,17 @@ export const ArticleHeader = ({
         </span>
       </div>
       <p className="p mt-2.5">{description}</p>
-      <figure className="mt-4 relative w-full h-80 overflow-hidden">
-        {/* TODO: Replace this div with cover image */}
-        <div className="w-full h-80 rounded-md border bg-[#fbfbfb]"></div>
-      </figure>
+      <AspectRatio
+        ratio={16 / 9}
+        className="relative overflow-hidden rounded-md"
+      >
+        <Image
+          src={ogImage}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </AspectRatio>
     </section>
   );
 };

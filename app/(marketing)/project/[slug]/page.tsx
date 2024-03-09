@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getAllMetadata, getAllPosts, getMetadata } from "@/lib/mdx";
 import { PageContent } from "@/types";
+import { siteConfig } from "@/config/site";
 import { ArticleFooter, ArticleHeader } from "@/components/article";
+import { getAllMetadata, getAllPosts, getMetadata } from "@/lib/mdx";
 
 interface Props {
   params: {
@@ -24,17 +25,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     keywords: meta.keywords,
-    authors: [{ name: meta.author, url: "https://sudipbiswas.vercel.app" }],
+    authors: [{ name: meta.author, url: siteConfig.url }],
     openGraph: {
       title: meta.title,
       description: meta.description,
       authors: [meta.author],
       publishedTime: new Date(meta.date).toISOString(),
       type: "article",
-      url: `https://sudipbiswas.vercel.app/project/${meta.slug}`,
+      url: `${siteConfig.url}/project/${meta.slug}`,
       images: [
         {
-          url: `https://sudipbiswas.vercel.app${meta.ogImage}`,
+          url: `${siteConfig.url}${meta.ogImage}`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -43,13 +44,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      site: "sudipbiswas.vercel.app",
+      site: siteConfig.url,
       creator: "Sudip Biswas",
       title: meta.title,
       description: meta.description,
       images: [
         {
-          url: `https://sudipbiswas.vercel.app${meta.ogImage}`,
+          url: `${siteConfig.url}${meta.ogImage}`,
           alt: meta.title,
           width: 1200,
           height: 630,
@@ -73,12 +74,13 @@ async function getPageContent(slug: string): Promise<PageContent> {
 export default async function ProjectPostPage({ params }: Props) {
   const data = await getPageContent(params.slug);
 
-  if (!data) notFound();
+  if (!data?.post) notFound();
 
   const { post, previous, next } = data;
 
   return (
     <main className="min-h-[calc(100vh-10rem)] layout py-3">
+      <div className="grid_background" />
       <ArticleHeader
         {...post.meta}
         type="project"
