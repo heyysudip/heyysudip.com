@@ -1,75 +1,85 @@
 ---
 title: "AI"
-description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, ex!"
-author: "Jon Mayers"
-keywords: ['nextjs', 'openai']
-date: "2023-01-20"
+description: "An AI chatbot powered by Google's Gemini Pro 1.0 and Vercel's AI SDK with seamless user experience and a beautiful UI."
+author: "Sudip Biswas"
+keywords: ['nextjs', 'gemini', 'tailwind css', 'shadcn-ui', 'vercel', 'ai', 'chatbot', 'google', 'gemini-pro-1.0', 'vercel-ai-sdk', 'user-experience', 'ui', 'beautiful', 'ui', 'chatbot', 'ai-chatbot']
+date: "2024-02-26"
 ---
 
-The `@tailwindcss/typography` plugin is our attempt to give you what you _actually_ want, without any of the downsides of doing something stupid like disabling our base styles.
+## Introduction
 
-It adds a new `prose` class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:
+This is an AI chatbot powered by Google's Gemini Pro 1.0 and Vercel's AI SDK with seamless user experience and a beautiful UI. It is built with Next.js, Gemini, Tailwind CSS, and Shadcn UI. It also uses Supabase.
 
-```html
-<article class="prose">
-  <h1>Garlic bread with cheese: What the science tells us</h1>
-  <p>
-    For years parents have espoused the health benefits of eating garlic bread
-    with cheese to their children, with the food earning such an iconic status
-    in our culture that kids will often dress up as warm, cheesy loaf for
-    Halloween.
-  </p>
-  <p>
-    But a recent study shows that the celebrated appetizer may be linked to a
-    series of rabies cases springing up around the country.
-  </p>
-</article>
-```
+Throughout the project, I have tried to maintain a clean and readable codebase with proper comments and documentation. I have also tried to maintain a good folder structure and naming conventions.
 
-For more information about how to use the plugin and the features it includes, [read the documentation](https://github.com/tailwindcss/typography/blob/master/README.md).
+Wanna see the live demo? Here's the [link](https://ai.sudipbiswas.me).
 
----
+Incase you want to see the codebase, here's the link to the [repository](https://github.com/sudipb7/ai).
 
-## What to expect from here on out
+## Goal
 
-What follows from here is just a bunch of absolute nonsense I've written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like **bold text**, unordered lists, ordered lists, code blocks, block quotes, _and even italics_.
+In this modern era of web development, user experience has become a very important factor.
 
-It's important to cover all of these use cases for a few reasons:
+Traditionally, web applications with complex functionalities like AI chatbots do not excel in user experience. This project aims to solve that problem by providing a seamless user experience with a beautiful UI.
 
-1.  We want everything to look good out of the box.
-2.  Really just the first reason, that's the whole point of the plugin.
-3.  Here's a third pretend reason though a list with three items looks more realistic than a list with two items.
+Throughout the project, I kept the user experience in mind and tried to make it as seamless as possible. I also tried to make the UI as beautiful as possible by adding animations and gradients.
 
-We even included table styles, check it out:
+The authentication flow is also seamless and the user data is stored in Supabase. It doesn't even feels like the user is signing in or signing up. It's just a smooth experience.
 
-| Wrestler                | Origin       | Finisher           |
-| ----------------------- | ------------ | ------------------ |
-| Bret "The Hitman" Hart  | Calgary, AB  | Sharpshooter       |
-| Stone Cold Steve Austin | Austin, TX   | Stone Cold Stunner |
-| Randy Savage            | Sarasota, FL | Elbow Drop         |
-| Vader                   | Boulder, CO  | Vader Bomb         |
-| Razor Ramon             | Chuluota, FL | Razor's Edge       |
+## Tech Stack
 
-We also need to make sure inline code looks good, like if I wanted to talk about `<span>` elements or tell you the good news about `@tailwindcss/typography`.
+The tech stack used is Nextjs with combination of Shadcn UI and tailwind css for a pleasing and beautiful UI giving a seamless user experience.
 
-### Sometimes I even use `code` in headings
+Supabase is used to seamlessly add user authentication and store user data using it's brand new `@supabase/ssr` package.
 
-Even though it's probably a bad idea, and historically I've had a hard time making it look good. This _"wrap the code blocks in backticks"_ trick works pretty well though really.
+Vercel AI SDK is used to seamlessly use Gemini Pro both on the client and server side.
 
-Another thing I've done in the past is put a `code` tag inside of a link, like if I wanted to tell you about the [`tailwindcss/docs`](https://github.com/tailwindcss/docs) repository. I don't love that there is an underline below the backticks but it is absolutely not worth the madness it would require to avoid it.
+Zod is used both on the client and server side to validate the user input.
 
-#### We haven't used an `h4` yet
+Nodemailer is used for sending feedback emails.
 
-But now we have. Please don't use `h5` or `h6` in your content, Medium only supports two heading levels for a reason, you animals. I honestly considered using a `before` pseudo-element to scream at you if you use an `h5` or `h6`.
+## Features
 
-We don't style them at all out of the box because `h4` elements are already so small that they are the same size as the body copy. What are we supposed to do with an `h5`, make it _smaller_ than the body copy? No thanks.
+Seamless authentication using Supabase with the help of `@supabase/ssr` package. Which allowed me to use server actions for authentication with ease.
 
-### We still need to think about stacked headings though.
+With Supabase in the backend, the user data is stored in a secure and reliable database.
 
-#### Let's make sure we don't screw that up with `h4` elements, either.
+Seamless AI chat experience with a streaming UI, which makes the user feel like they are chatting with a real human. All thanks to Vercel's AI SDK which provides an easy to use hook `useChat` to use Gemini Pro or any other AI model.
 
-Phew, with any luck we have styled the headings above this text and they look pretty good.
+Markdown support in the chat. The chatbot supports markdown which makes the chat more interactive and beautiful. This is done using `mdast-util-from-markdown`.
 
-Let's add a closing paragraph here so things end with a decently sized block of text. I can't explain why I want things to end that way but I have to assume it's because I think things will look weird or unbalanced if there is a heading too close to the end of the document.
+Code highlighting in the chat. This is done using `react-syntax-highlighter`. The code is highlighted based on the language of the code. This makes the chat more interactive and beautiful.
 
-What I've written here is probably long enough, but adding this final sentence can't hurt.
+Form validation using `zod` and `react-hook-form`. This makes the form more interactive and beautiful. The user gets instant feedback about the form validation.
+
+Feedback form in case the user wants to give feedback about the chatbot. The feedback is sent to the my email using `nodemailer`. This is a very important feature as it helps me to improve the chatbot.
+
+## Problems
+
+The main problem I faced while developing is, parsing the markdown and highlighting the code in the chat. This was a bit tricky as I had to use `mdast-util-from-markdown` and `highlight.js` to achieve this. 
+
+It took me some time to understand how to use these libraries and then I was able to implement the markdown and code highlighting in the chat.
+
+But another problem occured when I tried to stream AI's response. The response was streaming but the UI was messed up because of the streaming. Code highlighting was not working properly. 
+
+So I had to use `react-syntax-highlighter` to highlight the code. It sure took time. But, this solved the problem and the chat was working perfectly.
+
+A new problem arised when I tried to add authentication with Supabase and Server actions. Before this project, I had never used server actions and the caching and revalidation was a bit tricky. 
+
+I took some time to understand the caching and revalidation and then I was able to implement the authentication with Supabase and server actions.
+
+## Learnings
+
+I learned a lot of things while developing this project. I learned how to use server actions with Supabase and how to use Vercel's AI SDK. I also learned how to work with markdowns and code highlighting.
+
+I learned how to maintain a clean and readable codebase. I also learned how to maintain a good folder structure and naming conventions.
+
+Most importantly, my UI/UX skills improved a lot. I learned how to make a beautiful UI and how to make the user experience seamless. I also learned how to use animations and gradients in a proper way to give a professional look to the UI.
+
+## Conclusion
+
+This project was a great learning experience for me. I learned a lot of new things and improved my skills. 
+
+With all these features, I believe this project will be a great addition to my portfolio. 
+
+I look forward to add more features to this project and make it even better. I also look forward to work on more projects like this and improve my skills even more.

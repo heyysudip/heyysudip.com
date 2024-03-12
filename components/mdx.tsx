@@ -7,36 +7,36 @@ export const components = {
   h1: (props: HeadingProps) => (
     <h1
       {...props}
-      className="text-foreground tracking-wider mt-6 text-4xl font-bold"
+      className="text-foreground tracking-wider mt-6 text-3xl font-bold"
     />
   ),
   h2: (props: HeadingProps) => (
     <h2
       {...props}
-      className="text-foreground tracking-wider mt-6 text-3xl font-semibold"
+      className="text-foreground tracking-wider mt-6 text-2xl font-semibold"
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
       {...props}
-      className="text-foreground tracking-wider mt-6 text-2xl font-semibold"
+      className="text-foreground tracking-wider mt-6 text-xl font-semibold inline-block"
     />
   ),
   h4: (props: HeadingProps) => (
     <h4
       {...props}
-      className="text-foreground tracking-wider mt-6 text-xl font-medium"
+      className="text-foreground tracking-wider mt-6 text-lg font-medium inline-block"
     />
   ),
   p: (props: React.HTMLProps<HTMLParagraphElement>) => (
     <p
-      className="p [&:not(:first-child)]:mt-4"
+      className="p [&:not(:first-child)]:mt-4 inline-block"
       {...props}
     />
   ),
   a: (props: React.HTMLProps<HTMLAnchorElement>) => (
     <a
-      className="text-primary hover:opacity-90 transition-all"
+      className="text-primary underline underline-offset-2"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -95,7 +95,7 @@ export const components = {
     />
   ),
   pre: ({ children }: React.HTMLProps<HTMLElement>) => (
-    <pre className="mt-4 overflow-x-auto bg-muted border rounded-md p-4 w-full">{children}</pre>
+    <pre className="mt-4 overflow-x-auto bg-muted border rounded-md p-2 md:p-4 w-full">{children}</pre>
   ),
   Image,
   Link,

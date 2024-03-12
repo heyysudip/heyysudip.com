@@ -37,8 +37,8 @@
 }
 
 ::selection {
-  background-color: var(--secondary);
-  color: var(--background);
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--background));
 }
 
 .grid_background {
@@ -58,10 +58,6 @@
 }
 
 @layer base {
-  pre::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
   img {
     margin-top: 1.5rem;
     width: 100%;
