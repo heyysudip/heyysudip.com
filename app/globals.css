@@ -2,67 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0, 0%, 95%;
-    --foreground: 240 10% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 189, 79%, 48%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 217, 19%, 27%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 0, 0%, 97%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
-  }
+:root {
+  --foreground: #141414;
+  --background: #ffffff;
+  --primary: #e9490b;
+  --muted: #f8f7fc;
+  --muted-foreground: #878b91;
 }
 
-::selection {
-  background-color: hsl(var(--secondary));
-  color: hsl(var(--background));
-}
-
-.grid_background {
-  @apply fixed inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#8080801f_1px,transparent_1px),linear-gradient(to_bottom,#8080801f_1px,transparent_1px)] bg-[size:79px_79px];
-}
-
-.bg_gradient {
-  @apply fixed left-0 right-0 top-1/4 -z-10 m-auto h-[350px] w-[350px] rounded-full bg-cyan-200 opacity-20 blur-[100px];
-}
-
-.layout {
-  @apply w-full max-w-3xl mx-auto px-4 sm:px-7 md:px-10;
-}
-
-.p {
-  @apply text-secondary tracking-wider leading-relaxed;
-}
-
-@layer base {
-  img {
-    margin-top: 1.5rem;
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    object-fit: cover;
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }

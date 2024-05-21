@@ -3,15 +3,13 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Poppins as FontSans } from "next/font/google";
+import { DM_Sans as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
-import { Footer } from "@/components/footer";
+import { siteConfig } from "@/lib/site";
 
 const fontSans = FontSans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-sans",
 });
 
@@ -23,26 +21,21 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
   manifest: `${siteConfig.url}/site.webmanifest`,
-  creator: "sudipb7",
+  creator: siteConfig.title,
   authors: [
     {
-      name: "Sudip Biswas",
+      name: siteConfig.title,
       url: siteConfig.url,
     },
   ],
   keywords: [
-    "web development",
-    "programming",
-    "react",
-    "nextjs",
-    "typescript",
+    "web developer",
     "personal blog",
-    "tech blog",
     "sudip biswas",
     "sudipb7",
     "web developer",
     "software developer",
-    "sde",
+    "SDE",
   ],
   robots: {
     index: true,
@@ -116,7 +109,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
   userScalable: false,
-  colorScheme: "light",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -129,14 +122,12 @@ export default function RootLayout({
       <body
         className={cn(
           fontSans.variable,
-          "relative text-foreground font-sans min-h-screen antialiased"
+          "text-foreground bg-background font-sans min-h-screen antialiased"
         )}
       >
-        <div className="grid_background" />
-        {children}
+        <div className="w-full h-full mx-auto max-w-lg py-8 px-4">{children}</div>
         <Analytics />
         <SpeedInsights />
-        <Footer />
       </body>
     </html>
   );
