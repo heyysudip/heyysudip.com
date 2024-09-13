@@ -5,8 +5,8 @@ export const siteConfig = {
   ogImage: "https://sudipbiswas.dev/og.jpg",
   url: "https://sudipbiswas.dev",
   links: {
-    twitter: `https://x.com/${process.env.X}`,
-    github: `https://github.com/${process.env.GITHUB}`,
+    twitter: `https://x.com/heyysudip`,
+    github: `https://github.com/heyysudip`,
   },
 };
 
