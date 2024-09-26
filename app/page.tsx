@@ -67,7 +67,9 @@ export default function Home() {
           ))}
         </div>
         <Link
-          href="/projects"
+          href="https://github.com/heyysudip"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-muted-foreground underline underline-offset-1"
           aria-label="View all projects"
         >
