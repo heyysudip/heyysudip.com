@@ -5,8 +5,6 @@ import readingTime from "reading-time";
 import rehypePrettyCode from "rehype-pretty-code";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-import { components } from "@/components/mdx";
-
 const ROOT = path.join(process.cwd(), "content");
 
 type ContentType = "pages" | "blogs";
@@ -38,11 +36,13 @@ export async function getMetadata(slug: string, type: ContentType) {
 async function getMDX(fileContent: string) {
   const { content, frontmatter } = await compileMDX({
     source: fileContent,
-    components,
+    // components,
     options: {
       parseFrontmatter: true,
       mdxOptions: {
+        // @ts-expect-error - remarkPlugins and rehypePlugins are not in the types
         remarkPlugins: [remarkGfm],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         rehypePlugins: [[rehypePrettyCode as any, { theme: "github-light" }]],
       },
     },
