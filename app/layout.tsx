@@ -4,9 +4,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
-import { BackgroundGrid } from "@/components/background-grid";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 export { metadata, viewport } from "@/lib/metadata";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,8 +34,7 @@ export default function RootLayout({
           storageKey="theme"
           disableTransitionOnChange
         >
-          <BackgroundGrid />
-          <div className="py-14 sm:py-24 px-6 sm:px-20 min-h-screen max-w-3xl mx-auto">{children}</div>
+          <div className="py-14 sm:py-24 px-6 sm:px-20 max-w-3xl mx-auto">{children}</div>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

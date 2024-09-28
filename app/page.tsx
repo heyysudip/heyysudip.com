@@ -4,9 +4,9 @@ import { projects } from "@/lib/constants";
 export default function Home() {
   return (
     <main className="space-y-12 sm:space-y-16 leading-7">
-      <header className="max-sm:pb-4">
+      <header>
         <h1 className="text-lg font-medium">Sudip Biswas</h1>
-        <p className="font-semibold text-muted-foreground/85 font-mono">Software Developer</p>
+        <p className="text-[15px] text-muted-foreground/80 font-mono">Software Developer</p>
       </header>
       <section aria-labelledby="greeting-heading">
         <h2 id="greeting-heading" className="text-[17px] font-medium mb-4">
@@ -31,8 +31,7 @@ export default function Home() {
         <div>
           <div>
             <h3 className="font-[450] group-hover:underline underline-offset-1 transition ease">
-              Software Developer Intern at
-              <span> </span>
+              Software Developer Intern -<span> </span>
               <Link
                 href="https://thefuture.university"
                 target="_blank"
@@ -43,7 +42,7 @@ export default function Home() {
                 The Future University
               </Link>
             </h3>
-            <p className="text-muted-foreground mt-1">April 2024 - August 2024</p>
+            <p className="text-muted-foreground mt-1 text-sm font-mono">April 2024 - August 2024</p>
           </div>
         </div>
       </section>
@@ -67,7 +66,7 @@ export default function Home() {
           ))}
         </div>
         <Link
-          href="https://github.com/heyysudip"
+          href="https://github.com/sudipb7?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
           className="text-muted-foreground underline underline-offset-1"
@@ -101,7 +100,7 @@ export default function Home() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://x.com/heyysudip"
+            href="https://x.com/SudipB73"
             className="underline underline-offset-1"
             aria-label="Twitter profile"
           >
@@ -111,7 +110,7 @@ export default function Home() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/heyysudip"
+            href="https://github.com/sudipb7"
             className="underline underline-offset-1"
             aria-label="GitHub profile"
           >
