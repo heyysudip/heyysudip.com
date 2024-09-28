@@ -5,12 +5,13 @@ import readingTime from "reading-time";
 import rehypePrettyCode from "rehype-pretty-code";
 import { compileMDX } from "next-mdx-remote/rsc";
 
+import { components } from "@/components/mdx";
+import { Blog, FrontMatter, MDX } from "@/types/mdx";
+
 const ROOT = path.join(process.cwd(), "content");
 
-type ContentType = "pages" | "blogs";
-
-function getFileContent(slug: string, type: ContentType) {
-  const fullPath = path.join(ROOT, type, `${slug}.mdx`);
+function getFileContent(slug: string) {
+  const fullPath = path.join(ROOT, `${slug}.mdx`);
   const fileContent = fs.readFileSync(fullPath, "utf8");
   return fileContent;
 }
@@ -20,30 +21,37 @@ function getReadingTime(content: string) {
   return time < 0.5 ? 1 : Math.round(time);
 }
 
-export async function getMetadata(slug: string, type: ContentType) {
-  const fileContent = getFileContent(slug, type);
+export async function getMetadata(slug: string): Promise<FrontMatter> {
+  const fileContent = getFileContent(slug);
   const { frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
 
   return {
     ...frontmatter,
     slug,
-    ogImage: `/${type}/${slug}.jpg`,
+    ogImage: `/${slug}.jpg`,
     timeToRead,
-  };
+  } as FrontMatter;
 }
 
-async function getMDX(fileContent: string) {
+export async function getAllMetadata(): Promise<FrontMatter[]> {
+  const files = fs.readdirSync(path.join(ROOT));
+  const slugs = files.map(file => file.replace(/\.mdx$/, ""));
+  const allMetadata = await Promise.all(slugs.map(slug => getMetadata(slug)));
+  return allMetadata;
+}
+
+async function getMDX(fileContent: string): Promise<{ content: MDX; frontmatter: Partial<FrontMatter> }> {
   const { content, frontmatter } = await compileMDX({
     source: fileContent,
-    // components,
+    components,
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        // @ts-expect-error - remarkPlugins and rehypePlugins are not in the types
         remarkPlugins: [remarkGfm],
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        rehypePlugins: [[rehypePrettyCode as any, { theme: "github-light" }]],
+        rehypePlugins: [
+          [rehypePrettyCode, { keepBackground: false, theme: { dark: "vesper", light: "github-light" } }],
+        ],
       },
     },
   });
@@ -54,8 +62,8 @@ async function getMDX(fileContent: string) {
   };
 }
 
-export async function getPostBySlug(slug: string, type: ContentType) {
-  const fileContent = getFileContent(slug, type);
+export async function getPostBySlug(slug: string): Promise<Blog> {
+  const fileContent = getFileContent(slug);
   const { content, frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
 
@@ -64,7 +72,16 @@ export async function getPostBySlug(slug: string, type: ContentType) {
     meta: {
       ...frontmatter,
       slug,
+      ogImage: `/${slug}.jpg`,
       timeToRead,
-    },
+    } as FrontMatter,
   };
+}
+
+export async function getAllPosts(): Promise<Blog[]> {
+  const files = fs.readdirSync(path.join(ROOT));
+  const slugs = files.map(file => file.replace(/\.mdx$/, ""));
+  const allPosts = await Promise.all(slugs.map(slug => getPostBySlug(slug)));
+  const posts = allPosts.sort((a, b) => new Date(a.meta.date).getTime() - new Date(b.meta.date).getTime());
+  return posts;
 }
