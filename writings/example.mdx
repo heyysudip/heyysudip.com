@@ -1,0 +1,212 @@
+---
+title: "Example Blog"
+description: "One of the most useful things out there"
+author: "Sudip Biswas"
+date: "2024-09-29"
+---
+
+**MDX** is a powerful way to combine Markdown with JSX, making it ideal for creating dynamic content in React applications. If you're working with **Next.js**, MDX becomes a fantastic choice to create blogs, documentation, or even entire websites with reusable components.
+
+In this blog post, I'll walk you through the process of integrating MDX with Next.js, setting up a simple MDX-based blog, and leveraging React components directly in your Markdown files. [example](https://example.com)
+
+## What is MDX?
+
+MDX (Markdown + JSX) allows you to write JSX in your Markdown documents, which means you can embed interactive components within your content. This is especially useful when you're building pages with repetitive patterns or require interactive elements such as charts, buttons, or even custom UI elements.
+
+## Setting Up MDX in a Next.js Project
+
+To get started, you'll need an existing Next.js project. If you don't have one, you can create it by running:
+
+```bash
+npx create-next-app my-mdx-blog
+cd my-mdx-blog
+```
+
+### Step 1: Install Dependencies
+
+```bash
+npm install @next/mdx @mdx-js/loader @mdx-js/react
+```
+
+### Step 2: Configure MDX in Next.js
+
+Next.js has a built-in plugin system that makes it easy to integrate MDX. To do this, you'll need to modify your `next.config.js`:
+
+```js title="next.config.js"
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+});
+
+module.exports = withMDX({
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+});
+```
+
+In this configuration, we tell Next.js to handle files with `.mdx` and `.md` extensions using the MDX loader.
+
+### Step 3: Creating an MDX Page
+
+Now that MDX is set up, you can create an MDX file inside the `pages` directory. Let's create a new file called `blog.mdx`:
+
+```mdx title="index.mdx"
+# Welcome to My Blog
+
+This is my first blog post using MDX in Next.js.
+
+Here is a component rendered directly inside the Markdown:
+
+<Counter />
+```
+
+Notice how we used the `<Counter />` component directly within the Markdown. We'll define this component next.
+
+### Step 4: Adding React Components
+
+To add components to your MDX, you need to pass them through a context called `MDXProvider`. First, create a `Counter` component:
+
+```jsx title="components/Counter.js"
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Current Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+Now, wrap your MDX pages in `MDXProvider` so that they have access to your components. You can do this by modifying `_app.js`:
+
+```jsx title="pages/_app.js"
+import { MDXProvider } from "@mdx-js/react";
+import Counter from "../components/Counter";
+
+const components = {
+  Counter,
+};
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <MDXProvider components={components}>
+      <Component {...pageProps} />
+    </MDXProvider>
+  );
+}
+
+export default MyApp;
+```
+
+Now, when you navigate to `/blog`, you should see the rendered Markdown along with the interactive `Counter` component.
+
+## Rendering Dynamic Content
+
+You can also create a directory for your blog posts and dynamically generate pages. Here's an example:
+
+### Step 1: Create a Blog Directory
+
+Create a directory called `posts` in the root of your project and add a few `.mdx` files:
+
+```bash
+/posts
+  hello-world.mdx
+  another-post.mdx
+```
+
+### Step 2: Fetch MDX Files
+
+You can use `fs` and `path` to read the files from the `posts` directory. Let's create a dynamic blog page to list all posts:
+
+```jsx title="pages/blog/index.jsx" showLineNumbers
+import fs from "fs";
+import path from "path";
+import Link from "next/link";
+
+export default function Blog({ posts }) {
+  return (
+    <div>
+      <h1>Blog</h1>
+      <ul>
+        {posts.map(post => (
+          <li key={post}>
+            <Link href={`/blog/${post.replace(".mdx", "")}`}>{post.replace(".mdx", "")}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export async function getStaticProps() {
+  const postsDirectory = path.join(process.cwd(), "posts");
+  const filenames = fs.readdirSync(postsDirectory);
+
+  return {
+    props: {
+      posts: filenames,
+    },
+  };
+}
+```
+
+### Step 3: Render Individual Posts
+
+To render each post, create a `[slug].js` file inside the `pages/blog` directory:
+
+```jsx title="pages/blog/[slug].js" showLineNumbers
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import Counter from "../../components/Counter";
+
+export default function Post({ source, frontMatter }) {
+  return (
+    <div>
+      <h1>{frontMatter.title}</h1>
+      <MDXRemote {...source} components={{ Counter }} />
+    </div>
+  );
+}
+
+export async function getStaticPaths() {
+  const postsDirectory = path.join(process.cwd(), "posts");
+  const filenames = fs.readdirSync(postsDirectory);
+  const paths = filenames.map(filename => ({
+    params: { slug: filename.replace(".mdx", "") },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const postsDirectory = path.join(process.cwd(), "posts");
+  const filePath = path.join(postsDirectory, `${params.slug}.mdx`);
+  const source = fs.readFileSync(filePath);
+  const { content, data } = matter(source);
+
+  const mdxSource = await serialize(content);
+
+  return {
+    props: {
+      source: mdxSource,
+      frontMatter: data,
+    },
+  };
+}
+```
+
+In this code, we use `next-mdx-remote` to serialize and render MDX content dynamically.
+
+## Conclusion
+
+MDX offers a powerful way to create rich, dynamic content in Next.js applications. By combining Markdown with JSX, you can easily embed interactive components in your content, making it ideal for blogs, documentation, and more. In this post, we've set up MDX with Next.js, created a sample page, and explored how to create dynamic blog posts.
+
+I hope this helps you get started with MDX in your Next.js projects. Happy coding!

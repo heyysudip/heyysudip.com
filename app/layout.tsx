@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 export { metadata, viewport } from "@/lib/metadata";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import ThemeProvider from "@/components/providers/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,7 +34,7 @@ export default function RootLayout({
           storageKey="theme"
           disableTransitionOnChange
         >
-          <div className="py-14 sm:py-24 px-6 sm:px-20 max-w-3xl mx-auto">{children}</div>
+          <div className="py-14 sm:py-24 px-6 xs:px-10 sm:px-20 max-w-3xl mx-auto">{children}</div>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

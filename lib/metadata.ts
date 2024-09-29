@@ -1,6 +1,6 @@
 import { Metadata, Viewport } from "next";
 
-export const siteConfig = {
+const siteConfig = {
   title: "Sudip Biswas",
   description:
     "Hey, I'm Sudip Biswas, a Software Developer, YouTuber, and Blogger. I love to share my knowledge and experience with the world. I'm passionate about technology and love to learn new things.",
@@ -12,9 +12,9 @@ export const siteConfig = {
   },
 };
 
-export type SiteConfig = typeof siteConfig;
+type SiteConfig = typeof siteConfig;
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,
@@ -114,9 +114,12 @@ export const metadata: Metadata = {
   ],
 };
 
-export const viewport: Viewport = {
+const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
   userScalable: false,
   colorScheme: "light dark",
 };
+
+export { metadata, siteConfig, viewport };
+export type { SiteConfig };

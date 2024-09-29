@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { projects } from "@/lib/constants";
 
-export default function Home() {
+import { projects } from "@/lib/constants";
+// import { getAllWritings } from "@/lib/mdx";
+
+export default async function Home() {
+  // const writings = await getAllWritings();
+
   return (
     <main className="space-y-12 sm:space-y-16 leading-7">
       <header>
         <h1 className="text-lg font-medium">Sudip Biswas</h1>
-        <p className="text-[15px] text-muted-foreground/80 font-mono">Software Developer</p>
+        <p className="text-[15px] text-muted-foreground font-mono">Software Developer</p>
       </header>
       <section aria-labelledby="greeting-heading">
         <h2 id="greeting-heading" className="text-[17px] font-medium mb-4">
@@ -46,22 +50,51 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* <section aria-labelledby="writings-heading">
+        <h2 id="writings-heading" className="text-[17px] font-medium mb-4">
+          Latest Writings
+        </h2>
+        <div className="space-y-6 mb-4">
+          {writings.slice(0, 3).map(({ meta }) => (
+            <Link
+              href={`/writings/${meta.slug}`}
+              key={meta.slug}
+              className="inline-block w-full group active:scale-[.98] transition-transform ease-out"
+              aria-label={`Writing: ${meta.title}`}
+            >
+              <h3 className="font-[450] max-md:underline group-hover:underline underline-offset-1 transition ease">
+                {meta.title}
+              </h3>
+              <p className="text-muted-foreground text-sm font-mono">{meta.description}</p>
+            </Link>
+          ))}
+        </div>
+        <Link
+          href="/writings"
+          className="text-muted-foreground underline underline-offset-1"
+          aria-label="Read more writings"
+        >
+          Read more
+        </Link>
+      </section> */}
       <section aria-labelledby="projects-heading">
         <h2 id="projects-heading" className="text-[17px] font-medium mb-4">
           Projects
         </h2>
-        <div className="space-y-6 mb-4">
+        <div className="space-y-2.5 sm:space-y-3.5 mb-4">
           {projects.map(project => (
             <Link
               key={project.title}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block group"
+              className="inline-block w-full group active:scale-[.98] transition-transform ease-out"
               aria-label={`Project: ${project.title}`}
             >
-              <h3 className="font-[450] group-hover:underline underline-offset-1 transition ease">{project.title}</h3>
-              <p className="text-muted-foreground mt-1">{project.description}</p>
+              <h3 className="font-[450] max-md:underline group-hover:underline underline-offset-1 transition ease">
+                {project.title}
+              </h3>
+              <p className="text-muted-foreground text-sm font-mono">{project.description}</p>
             </Link>
           ))}
         </div>
@@ -75,22 +108,6 @@ export default function Home() {
           View all projects
         </Link>
       </section>
-      {/* <section aria-labelledby="blogs-heading">
-        <h2 id="blogs-heading" className="text-[17px] font-medium mb-4">
-          Latest Blogs
-        </h2>
-        <div className="space-y-6 mb-4">
-          {blogs.map(blog => (
-            <Link key={blog.title} href={blog.url} className="inline-block group" aria-label={`Blog: ${blog.title}`}>
-              <h3 className="font-[450] group-hover:underline underline-offset-1 transition ease">{blog.title}</h3>
-              <p className="text-muted-foreground mt-1">{blog.description}</p>
-            </Link>
-          ))}
-        </div>
-        <Link href="/blog" className="text-muted-foreground underline underline-offset-1" aria-label="Read more blogs">
-          Read more
-        </Link>
-      </section> */}
       <footer aria-labelledby="more-heading">
         <h2 id="more-heading" className="text-[17px] font-medium mb-4">
           More
@@ -106,7 +123,7 @@ export default function Home() {
           >
             Twitter
           </Link>{" "}
-          and more of my code on{" "}
+          and{" "}
           <Link
             target="_blank"
             rel="noopener noreferrer"
