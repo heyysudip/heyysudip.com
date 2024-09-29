@@ -4,19 +4,14 @@ import { cn } from "@/lib/utils";
 import { HeadingProps } from "@/types/mdx";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-export const components = {
+const components = {
   h1: (props: HeadingProps) => <h1 {...props} className="text-lg font-medium" />,
   h2: (props: HeadingProps) => <h2 {...props} className="text-[17px] font-medium" />,
   h3: (props: HeadingProps) => <h3 {...props} className="font-[450]" />,
   h4: (props: HeadingProps) => <h4 {...props} className="leading-7" />,
   p: (props: React.HTMLProps<HTMLParagraphElement>) => <p className="text-muted-foreground" {...props} />,
   a: (props: React.HTMLProps<HTMLAnchorElement>) => (
-    <a
-      className="underline underline-offset-1 text-[#ff933b] dark:text-[#FFC799]"
-      target="_blank"
-      rel="noopener noreferrer"
-      {...props}
-    />
+    <a className="underline underline-offset-2" target="_blank" rel="noopener noreferrer" {...props} />
   ),
   blockquote: (props: React.HTMLProps<HTMLElement>) => (
     <blockquote className="border-l-2 pl-3 pr-2 sm:pl-4 md:pr-3 italic font-serif bg-muted/20 py-2">
@@ -47,7 +42,7 @@ export const components = {
     const isInline = typeof props.children === "string" && !props.children.includes("\n");
     return (
       <code
-        className={cn("rounded-lg px-1 py-0.5 font-mono text-sm font-medium", isInline && "border !bg-background")}
+        className={cn("rounded-lg px-1 py-0.5 font-mono text-sm", isInline && "border !bg-background")}
         {...props}
       />
     );
@@ -60,7 +55,7 @@ export const components = {
       </ScrollArea>
     </pre>
   ),
-  Link: (props: LinkProps) => (
-    <Link {...props} className="underline underline-offset-1 text-[#ff933b] dark:text-[#FFC799]" />
-  ),
+  Link: (props: LinkProps) => <Link {...props} className="underline underline-offset-2" />,
 };
+
+export default components;

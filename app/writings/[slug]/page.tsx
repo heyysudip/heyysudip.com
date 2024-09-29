@@ -4,11 +4,10 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
-import { ShareBtn } from "./share-btn";
 import { formatDate } from "@/lib/utils";
 import { PageContent } from "@/types/mdx";
 import { siteConfig } from "@/lib/metadata";
-import { ShowViews, ShowViewsFallback } from "./show-views";
+import { ShowViewsFallback, ShowViews } from "./show-views";
 import { getAllMetadata, getAllWritings, getMetadata } from "@/lib/mdx";
 
 interface Props {
@@ -76,7 +75,7 @@ async function getPageContent(slug: string): Promise<PageContent> {
   };
 }
 
-export default async function Blog({ params }: Props) {
+export default async function Writing({ params }: Props) {
   const data = await getPageContent(params.slug);
 
   if (!data?.current) notFound();
@@ -85,14 +84,7 @@ export default async function Blog({ params }: Props) {
 
   return (
     <main className="leading-7 space-y-12 sm:space-y-16">
-      <header className="relative">
-        <ShareBtn slug={current.meta.slug} />
-        <Link
-          href="/blog"
-          className="inline-block text-[13px] text-muted-foreground font-mono hover:underline underline-offset-1 active:scale-95 transition-transform ease-out"
-        >
-          &larr; Back
-        </Link>
+      <header>
         <h1 className="text-lg font-medium mt-1">{current.meta.title}</h1>
         <div className="flex items-center gap-2 text-[13.5px] text-muted-foreground font-mono">
           <p>{formatDate(current.meta.date)}</p>
@@ -108,7 +100,7 @@ export default async function Blog({ params }: Props) {
       {(previous || next) && (
         <div className="flex justify-between items-center border-t">
           {previous ? (
-            <Link href={`/blog/${previous?.meta.slug}`} className="text-start px-2 py-6">
+            <Link href={`/writings/${previous?.meta.slug}`} className="text-start px-2 py-6">
               <span className="text-muted-foreground font-mono text-sm font-medium">Previous</span>
               <p>{previous.meta.title}</p>
             </Link>
@@ -116,7 +108,7 @@ export default async function Blog({ params }: Props) {
             <div className=""></div>
           )}
           {next ? (
-            <Link href={`/blog/${next?.meta.slug}`} className="text-end px-2 py-6">
+            <Link href={`/writings/${next?.meta.slug}`} className="text-end px-2 py-6">
               <span className="text-muted-foreground font-mono text-sm font-medium">Next</span>
               <p>{next.meta.title}</p>
             </Link>

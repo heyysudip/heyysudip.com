@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 export { metadata, viewport } from "@/lib/metadata";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import ThemeProvider from "@/components/providers/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

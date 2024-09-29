@@ -27,7 +27,7 @@ async function recordViewCount(slug: string) {
 
   let viewCount: number;
 
-  if (!hasViewed) {
+  if (!hasViewed && process.env.NODE_ENV === "production") {
     const pipeline = redis.pipeline();
     pipeline.incr(viewKey);
     pipeline.set(ipViewKey, "1");
@@ -41,7 +41,7 @@ async function recordViewCount(slug: string) {
   }
 }
 
-export const ShowViews = async ({ slug }: { slug: string }) => {
+async function ShowViews({ slug }: { slug: string }) {
   const { views } = await recordViewCount(slug);
 
   return (
@@ -49,8 +49,10 @@ export const ShowViews = async ({ slug }: { slug: string }) => {
       {views} {views > 1 ? "views" : "view"}
     </MotionP>
   );
-};
+}
 
-export const ShowViewsFallback = () => {
-  return <p>100 views</p>;
-};
+function ShowViewsFallback() {
+  return <p className="blur-sm">100 views</p>;
+}
+
+export { ShowViews, ShowViewsFallback };

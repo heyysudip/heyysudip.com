@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MDX = React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+type MDX = React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 
-export type FrontMatter = {
+type FrontMatter = {
   title: string;
   description: string;
   date: string;
@@ -12,15 +12,17 @@ export type FrontMatter = {
   timeToRead: number;
 };
 
-export type Writing = {
+type Writing = {
   mdxContent: MDX;
   meta: FrontMatter;
 };
 
-export type HeadingProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
+type HeadingProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
 
-export type PageContent = {
+type PageContent = {
   current: Writing;
   previous: Writing | null;
   next: Writing | null;
 };
+
+export type { FrontMatter, Writing, MDX, HeadingProps, PageContent };

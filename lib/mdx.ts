@@ -5,7 +5,7 @@ import readingTime from "reading-time";
 import rehypePrettyCode from "rehype-pretty-code";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-import { components } from "@/components/mdx";
+import components from "@/components/mdx";
 import { FrontMatter, MDX, Writing } from "@/types/mdx";
 
 const ROOT = path.join(process.cwd(), "writings");
@@ -21,7 +21,7 @@ function getReadingTime(content: string) {
   return time < 0.5 ? 1 : Math.round(time);
 }
 
-export async function getMetadata(slug: string): Promise<FrontMatter> {
+async function getMetadata(slug: string): Promise<FrontMatter> {
   const fileContent = getFileContent(slug);
   const { frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
@@ -34,7 +34,7 @@ export async function getMetadata(slug: string): Promise<FrontMatter> {
   } as FrontMatter;
 }
 
-export async function getAllMetadata(): Promise<FrontMatter[]> {
+async function getAllMetadata(): Promise<FrontMatter[]> {
   const files = fs.readdirSync(path.join(ROOT));
   const slugs = files.map(file => file.replace(/\.mdx$/, ""));
   const allMetadata = await Promise.all(slugs.map(slug => getMetadata(slug)));
@@ -50,7 +50,7 @@ async function getMDX(fileContent: string): Promise<{ content: MDX; frontmatter:
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
-          [rehypePrettyCode, { keepBackground: false, theme: { dark: "vesper", light: "github-light" } }],
+          [rehypePrettyCode, { keepBackground: false, theme: { light: "github-light", dark: "github-dark" } }],
         ],
       },
     },
@@ -62,7 +62,7 @@ async function getMDX(fileContent: string): Promise<{ content: MDX; frontmatter:
   };
 }
 
-export async function getWritingBySlug(slug: string): Promise<Writing> {
+async function getWritingBySlug(slug: string): Promise<Writing> {
   const fileContent = getFileContent(slug);
   const { content, frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
@@ -78,10 +78,12 @@ export async function getWritingBySlug(slug: string): Promise<Writing> {
   };
 }
 
-export async function getAllWritings(): Promise<Writing[]> {
+async function getAllWritings(): Promise<Writing[]> {
   const files = fs.readdirSync(path.join(ROOT));
   const slugs = files.map(file => file.replace(/\.mdx$/, ""));
   const allWritings = await Promise.all(slugs.map(slug => getWritingBySlug(slug)));
   const writings = allWritings.sort((a, b) => new Date(a.meta.date).getTime() - new Date(b.meta.date).getTime());
   return writings;
 }
+
+export { getAllWritings, getWritingBySlug, getMetadata, getAllMetadata };

@@ -17,10 +17,12 @@ export default async function Writings() {
           <Link
             href={`/writings/${meta.slug}`}
             key={meta.slug}
-            className="overflow-hidden relative inline-block p-3 rounded-lg w-full border bg-secondary/20 hover:bg-secondary/50 active:scale-95 transition-transform ease-out"
+            className="inline-block w-full group active:scale-[.98] transition-transform ease-out"
             aria-label={`Writing: ${meta.title}`}
           >
-            <h3 className="font-[450]">{meta.title}</h3>
+            <h3 className="font-[450] max-md:underline group-hover:underline underline-offset-1 transition ease">
+              {meta.title}
+            </h3>
             <p className="text-muted-foreground text-sm font-mono">{meta.description}</p>
           </Link>
         ))}

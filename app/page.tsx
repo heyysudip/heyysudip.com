@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { projects } from "@/lib/constants";
 import { getAllWritings } from "@/lib/mdx";
 
@@ -49,6 +50,33 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      <section aria-labelledby="writings-heading">
+        <h2 id="writings-heading" className="text-[17px] font-medium mb-4">
+          Latest Writings
+        </h2>
+        <div className="space-y-6 mb-4">
+          {writings.slice(0, 3).map(({ meta }) => (
+            <Link
+              href={`/writings/${meta.slug}`}
+              key={meta.slug}
+              className="inline-block w-full group active:scale-[.98] transition-transform ease-out"
+              aria-label={`Writing: ${meta.title}`}
+            >
+              <h3 className="font-[450] max-md:underline group-hover:underline underline-offset-1 transition ease">
+                {meta.title}
+              </h3>
+              <p className="text-muted-foreground text-sm font-mono">{meta.description}</p>
+            </Link>
+          ))}
+        </div>
+        <Link
+          href="/writings"
+          className="text-muted-foreground underline underline-offset-1"
+          aria-label="Read more writings"
+        >
+          Read more
+        </Link>
+      </section>
       <section aria-labelledby="projects-heading">
         <h2 id="projects-heading" className="text-[17px] font-medium mb-4">
           Projects
@@ -60,10 +88,12 @@ export default async function Home() {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="overflow-hidden relative inline-block p-3 rounded-lg w-full border bg-secondary/20 hover:bg-secondary/50 active:scale-95 transition-transform ease-out"
+              className="inline-block w-full group active:scale-[.98] transition-transform ease-out"
               aria-label={`Project: ${project.title}`}
             >
-              <h3 className="font-[450]">{project.title}</h3>
+              <h3 className="font-[450] max-md:underline group-hover:underline underline-offset-1 transition ease">
+                {project.title}
+              </h3>
               <p className="text-muted-foreground text-sm font-mono">{project.description}</p>
             </Link>
           ))}
@@ -76,31 +106,6 @@ export default async function Home() {
           aria-label="View all projects"
         >
           View all projects
-        </Link>
-      </section>
-      <section aria-labelledby="writings-heading">
-        <h2 id="writings-heading" className="text-[17px] font-medium mb-4">
-          Latest Writings
-        </h2>
-        <div className="space-y-6 mb-4">
-          {writings.slice(0, 3).map(({ meta }) => (
-            <Link
-              href={`/writings/${meta.slug}`}
-              key={meta.slug}
-              className="overflow-hidden relative inline-block p-3 rounded-lg w-full border bg-secondary/20 hover:bg-secondary/50 active:scale-95 transition-transform ease-out"
-              aria-label={`Writing: ${meta.title}`}
-            >
-              <h3 className="font-[450]">{meta.title}</h3>
-              <p className="text-muted-foreground text-sm font-mono">{meta.description}</p>
-            </Link>
-          ))}
-        </div>
-        <Link
-          href="/writings"
-          className="text-muted-foreground underline underline-offset-1"
-          aria-label="Read more writings"
-        >
-          Read more
         </Link>
       </section>
       <footer aria-labelledby="more-heading">
