@@ -11,12 +11,19 @@ export const components = {
   h4: (props: HeadingProps) => <h4 {...props} className="leading-7" />,
   p: (props: React.HTMLProps<HTMLParagraphElement>) => <p className="text-muted-foreground" {...props} />,
   a: (props: React.HTMLProps<HTMLAnchorElement>) => (
-    <a className="underline underline-offset-1" target="_blank" rel="noopener noreferrer" {...props} />
+    <a
+      className="underline underline-offset-1 text-[#ff933b] dark:text-[#FFC799]"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    />
   ),
   blockquote: (props: React.HTMLProps<HTMLElement>) => (
-    <blockquote className="border-l-2 pl-3 sm:pl-4 italic font-serif">{props.children}</blockquote>
+    <blockquote className="border-l-2 pl-3 pr-2 sm:pl-4 md:pr-3 italic font-serif bg-muted/20 py-2">
+      {props.children}
+    </blockquote>
   ),
-
+  strong: (props: React.HTMLProps<HTMLElement>) => <strong className="font-medium" {...props} />,
   ul: (props: React.HTMLProps<HTMLUListElement>) => <ul className="list-disc list-inside" {...props} />,
   ol: ({ children }: React.HTMLProps<HTMLOListElement>) => <ol className="list-decimal list-inside">{children}</ol>,
   li: ({ children }: React.HTMLProps<HTMLLIElement>) => <li className="ml-2 text-muted-foreground">{children}</li>,
@@ -39,16 +46,21 @@ export const components = {
   code: (props: React.HTMLProps<HTMLElement>) => {
     const isInline = typeof props.children === "string" && !props.children.includes("\n");
     return (
-      <code className={cn("rounded-lg px-1 py-0.5 font-mono text-sm font-medium", isInline && "border")} {...props} />
+      <code
+        className={cn("rounded-lg px-1 py-0.5 font-mono text-sm font-medium", isInline && "border !bg-background")}
+        {...props}
+      />
     );
   },
   pre: (props: React.HTMLProps<HTMLPreElement>) => (
-    <pre {...props} className="border rounded-b-lg overflow-hidden w-full">
+    <pre {...props} className="border rounded-lg overflow-hidden w-full">
       <ScrollArea className="p-2 md:p-3.5 code-wrapper">
         {props.children}
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </pre>
   ),
-  Link: (props: LinkProps) => <Link {...props} className="underline underline-offset-1" />,
+  Link: (props: LinkProps) => (
+    <Link {...props} className="underline underline-offset-1 text-[#ff933b] dark:text-[#FFC799]" />
+  ),
 };

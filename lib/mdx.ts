@@ -6,9 +6,9 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { compileMDX } from "next-mdx-remote/rsc";
 
 import { components } from "@/components/mdx";
-import { Blog, FrontMatter, MDX } from "@/types/mdx";
+import { FrontMatter, MDX, Writing } from "@/types/mdx";
 
-const ROOT = path.join(process.cwd(), "content");
+const ROOT = path.join(process.cwd(), "writings");
 
 function getFileContent(slug: string) {
   const fullPath = path.join(ROOT, `${slug}.mdx`);
@@ -29,7 +29,7 @@ export async function getMetadata(slug: string): Promise<FrontMatter> {
   return {
     ...frontmatter,
     slug,
-    ogImage: `/${slug}.jpg`,
+    ogImage: `/writings/${slug}.jpg`,
     timeToRead,
   } as FrontMatter;
 }
@@ -62,7 +62,7 @@ async function getMDX(fileContent: string): Promise<{ content: MDX; frontmatter:
   };
 }
 
-export async function getPostBySlug(slug: string): Promise<Blog> {
+export async function getWritingBySlug(slug: string): Promise<Writing> {
   const fileContent = getFileContent(slug);
   const { content, frontmatter } = await getMDX(fileContent);
   const timeToRead = getReadingTime(fileContent);
@@ -78,10 +78,10 @@ export async function getPostBySlug(slug: string): Promise<Blog> {
   };
 }
 
-export async function getAllPosts(): Promise<Blog[]> {
+export async function getAllWritings(): Promise<Writing[]> {
   const files = fs.readdirSync(path.join(ROOT));
   const slugs = files.map(file => file.replace(/\.mdx$/, ""));
-  const allPosts = await Promise.all(slugs.map(slug => getPostBySlug(slug)));
-  const posts = allPosts.sort((a, b) => new Date(a.meta.date).getTime() - new Date(b.meta.date).getTime());
-  return posts;
+  const allWritings = await Promise.all(slugs.map(slug => getWritingBySlug(slug)));
+  const writings = allWritings.sort((a, b) => new Date(a.meta.date).getTime() - new Date(b.meta.date).getTime());
+  return writings;
 }

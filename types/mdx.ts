@@ -12,7 +12,7 @@ export type FrontMatter = {
   timeToRead: number;
 };
 
-export type Blog = {
+export type Writing = {
   mdxContent: MDX;
   meta: FrontMatter;
 };
@@ -20,7 +20,7 @@ export type Blog = {
 export type HeadingProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
 
 export type PageContent = {
-  post: Blog;
-  previous: Blog | null;
-  next: Blog | null;
+  current: Writing;
+  previous: Writing | null;
+  next: Writing | null;
 };

@@ -17,18 +17,3 @@ export const projects = [
     url: "https://webpx.sudipbiswas.dev",
   },
 ];
-
-export const blogs = [
-  {
-    title: "How to build a video streaming service",
-    description:
-      "I recently built a video streaming service that uses adaptive bitrate streaming to deliver the best possible quality to users.",
-    url: "/blog/how-to-build-a-video-streaming-service",
-  },
-  {
-    title: "Working with MDX",
-    description:
-      "I recently started using MDX to write my blog posts. It's a great way to combine Markdown with JSX to create interactive content.",
-    url: "/blog/working-with-mdx",
-  },
-];
