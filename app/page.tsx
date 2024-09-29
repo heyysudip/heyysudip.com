@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 import { projects } from "@/lib/constants";
-import { getAllWritings } from "@/lib/mdx";
+// import { getAllWritings } from "@/lib/mdx";
 
 export default async function Home() {
-  const writings = await getAllWritings();
+  // const writings = await getAllWritings();
 
   return (
     <main className="space-y-12 sm:space-y-16 leading-7">
@@ -50,7 +50,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section aria-labelledby="writings-heading">
+      {/* <section aria-labelledby="writings-heading">
         <h2 id="writings-heading" className="text-[17px] font-medium mb-4">
           Latest Writings
         </h2>
@@ -76,7 +76,7 @@ export default async function Home() {
         >
           Read more
         </Link>
-      </section>
+      </section> */}
       <section aria-labelledby="projects-heading">
         <h2 id="projects-heading" className="text-[17px] font-medium mb-4">
           Projects
@@ -123,7 +123,7 @@ export default async function Home() {
           >
             Twitter
           </Link>{" "}
-          and more of my code on{" "}
+          and{" "}
           <Link
             target="_blank"
             rel="noopener noreferrer"

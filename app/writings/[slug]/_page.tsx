@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
 import { formatDate } from "@/lib/utils";
 import { PageContent } from "@/types/mdx";
 import { siteConfig } from "@/lib/metadata";
-import { ShowViewsFallback, ShowViews } from "./show-views";
 import { getAllMetadata, getAllWritings, getMetadata } from "@/lib/mdx";
 
 interface Props {
@@ -85,13 +83,15 @@ export default async function Writing({ params }: Props) {
   return (
     <main className="leading-7 space-y-12 sm:space-y-16">
       <header>
+        <Link
+          href="/writings"
+          className="inline-block text-[13px] text-muted-foreground font-mono hover:underline underline-offset-1 active:scale-95 transition-transform ease-out"
+        >
+          &larr; Back
+        </Link>
         <h1 className="text-lg font-medium mt-1">{current.meta.title}</h1>
         <div className="flex items-center gap-2 text-[13.5px] text-muted-foreground font-mono">
           <p>{formatDate(current.meta.date)}</p>
-          <p>&middot;</p>
-          <Suspense fallback={<ShowViewsFallback />}>
-            <ShowViews slug={current.meta.slug} />
-          </Suspense>
           <p>&middot;</p>
           <p className="max-xs:hidden">{current.meta.timeToRead} mins of read</p>
         </div>
