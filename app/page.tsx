@@ -117,7 +117,7 @@ export default async function Home() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://x.com/SudipB73"
+            href="https://x.com/sudipbiswas_dev"
             className="underline underline-offset-1"
             aria-label="Twitter profile"
           >

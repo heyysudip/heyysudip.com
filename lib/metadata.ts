@@ -7,8 +7,8 @@ const siteConfig = {
   ogImage: "https://sudipbiswas.dev/og.jpg",
   url: "https://sudipbiswas.dev",
   links: {
-    twitter: `https://x.com/heyysudip`,
-    github: `https://github.com/heyysudip`,
+    twitter: `https://x.com/sudipbiswas_dev`,
+    github: `https://github.com/sudipb7`,
   },
 };
 

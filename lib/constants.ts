@@ -2,7 +2,7 @@ const projects = [
   {
     title: "Adaptive Bitrate Streaming",
     description: "Transcodes videos into multiple resolutions and bitrates.",
-    url: "https://github.com/heyysudip/adaptive-bitrate-streaming",
+    url: "https://github.com/sudipb7/adaptive-bitrate-streaming",
   },
   {
     title: "AI",
@@ -12,7 +12,7 @@ const projects = [
   {
     title: "Webpx",
     description: "Compression tool for images.",
-    url: "https://webpx.sudipbiswas.dev",
+    url: "https://github.com/sudipb7/webpx",
   },
 ];
 
